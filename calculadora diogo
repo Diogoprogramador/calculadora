@@ -1,0 +1,60 @@
+import tkinter as tk
+
+class Calculadora:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Calculadora")
+        self.root.geometry("400x500")
+
+        self.equacao = ""
+        self.text_input = tk.StringVar()
+
+        self.create_widgets()
+
+    def create_widgets(self):
+        entrada = tk.Entry(self.root, font=('arial', 20, 'bold'), textvariable=self.text_input, bd=20, insertwidth=4, bg="powder blue", justify='right')
+        entrada.grid(columnspan=4)
+
+        botoes = [
+            '7', '8', '9', '/',
+            '4', '5', '6', '*',
+            '1', '2', '3', '-',
+            '0', '.', '=', '+'
+        ]
+
+        linha = 1
+        coluna = 0
+        for botao in botoes:
+            comando = lambda x=botao: self.clicar_botao(x)
+            b = tk.Button(self.root, text=botao, padx=20, pady=20, bd=8, fg="black", font=('arial', 20, 'bold'), command=comando)
+            b.grid(row=linha, column=coluna)
+
+            coluna += 1
+            if coluna == 4:
+                coluna = 0
+                linha += 1
+
+        b_clear = tk.Button(self.root, text='C', padx=20, pady=20, bd=8, fg="black", font=('arial', 20, 'bold'), command=self.clear)
+        b_clear.grid(row=5, column=0, columnspan=4)
+
+    def clicar_botao(self, botao):
+        if botao == '=':
+            try:
+                total = str(eval(self.equacao))
+                self.text_input.set(total)
+                self.equacao = total
+            except:
+                self.text_input.set(" erro ")
+                self.equacao = ""
+        else:
+            self.equacao += str(botao)
+            self.text_input.set(self.equacao)
+
+    def clear(self):
+        self.equacao = ""
+        self.text_input.set("")
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = Calculadora(root)
+    root.mainloop()
