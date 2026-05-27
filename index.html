@@ -33,31 +33,34 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            min-height: 100vh;
+            height: 100vh;
+            height: 100dvh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 16px;
+            padding: 8px;
             color: var(--text);
+            overflow: hidden;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 6px;
+            flex-shrink: 0;
         }
 
         .header h1 {
             color: var(--text-light);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             letter-spacing: 1px;
         }
 
         .header p {
             color: rgba(255, 255, 255, 0.8);
-            font-size: 0.85rem;
-            margin-top: 4px;
+            font-size: 0.75rem;
+            margin-top: 2px;
         }
 
         .calculator {
@@ -67,16 +70,23 @@
             width: 100%;
             max-width: 400px;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+            max-height: calc(100vh - 80px);
+            max-height: calc(100dvh - 80px);
         }
 
         .display {
             background: var(--primary);
-            padding: 20px 24px;
+            padding: 12px 20px;
             text-align: right;
-            min-height: 100px;
+            min-height: 60px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            flex-shrink: 0;
         }
 
         .display .expression {
@@ -88,7 +98,7 @@
 
         .display .result {
             color: var(--text-light);
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             word-break: break-all;
             line-height: 1.2;
@@ -96,19 +106,20 @@
 
         .libras-display {
             background: var(--bg);
-            padding: 12px 16px;
+            padding: 6px 12px;
             text-align: center;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            min-height: 56px;
+            min-height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 4px;
             flex-wrap: wrap;
+            flex-shrink: 0;
         }
 
         .libras-display .hand {
-            font-size: 2rem;
+            font-size: 1.5rem;
             line-height: 1;
             transition: transform 0.15s ease;
         }
@@ -130,9 +141,12 @@
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(5, 1fr);
             gap: 1px;
             background: rgba(0, 0, 0, 0.06);
             padding: 1px;
+            flex: 1;
+            min-height: 0;
         }
 
         .btn {
@@ -140,7 +154,7 @@
             background: var(--surface);
             font-size: 1.4rem;
             font-weight: 600;
-            padding: 18px 8px;
+            padding: 0;
             cursor: pointer;
             transition: background 0.15s ease, transform 0.1s ease;
             display: flex;
@@ -217,9 +231,10 @@
 
         .footer {
             text-align: center;
-            margin-top: 16px;
+            margin-top: 6px;
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
+            flex-shrink: 0;
         }
 
         .footer a {
@@ -235,19 +250,15 @@
         /* Responsividade para telas pequenas */
         @media (max-width: 360px) {
             body {
-                padding: 8px;
+                padding: 4px;
             }
 
             .header h1 {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .display .result {
-                font-size: 2rem;
-            }
-
-            .btn {
-                padding: 14px 6px;
+                font-size: 1.8rem;
             }
 
             .btn .btn-label {
@@ -255,11 +266,11 @@
             }
 
             .btn .btn-hand {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
             }
 
             .libras-display .hand {
-                font-size: 1.6rem;
+                font-size: 1.3rem;
             }
         }
 
@@ -269,27 +280,24 @@
                 max-width: 420px;
             }
 
-            .btn {
-                padding: 22px 10px;
-            }
-
             .display .result {
-                font-size: 2.8rem;
+                font-size: 2.2rem;
             }
         }
 
         /* Telas grandes (PC) */
         @media (min-width: 769px) {
             .header h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
             .calculator {
                 max-width: 440px;
+                max-height: calc(100vh - 70px);
+                max-height: calc(100dvh - 70px);
             }
 
             .btn {
-                padding: 24px 12px;
                 font-size: 1.5rem;
             }
 
@@ -298,28 +306,28 @@
             }
 
             .display {
-                padding: 24px 28px;
-                min-height: 120px;
+                padding: 16px 24px;
+                min-height: 70px;
             }
 
             .display .result {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
         }
 
         /* Landscape em celulares */
         @media (max-height: 500px) and (orientation: landscape) {
             body {
-                padding: 8px;
+                padding: 4px;
                 justify-content: flex-start;
             }
 
             .header {
-                margin-bottom: 4px;
+                margin-bottom: 2px;
             }
 
             .header h1 {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
 
             .header p {
@@ -327,37 +335,33 @@
             }
 
             .display {
-                padding: 8px 16px;
-                min-height: 60px;
+                padding: 6px 12px;
+                min-height: 40px;
             }
 
             .display .result {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
             .display .expression {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
 
             .libras-display {
-                padding: 4px 8px;
-                min-height: 36px;
+                padding: 2px 6px;
+                min-height: 28px;
             }
 
             .libras-display .hand {
-                font-size: 1.4rem;
+                font-size: 1.1rem;
             }
 
             .libras-label {
-                font-size: 0.6rem;
-            }
-
-            .btn {
-                padding: 10px 6px;
+                font-size: 0.55rem;
             }
 
             .btn .btn-label {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
 
             .btn .btn-hand {
@@ -365,7 +369,7 @@
             }
 
             .footer {
-                margin-top: 4px;
+                margin-top: 2px;
             }
         }
 
